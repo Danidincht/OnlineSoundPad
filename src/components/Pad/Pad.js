@@ -1,18 +1,10 @@
-import React from 'react';
+import { React, useState} from 'react';
 
 function Pad(props) {
-	var audio = new Audio(props.sound);
-	audio.controls = true;
-
-	function onPadClick() {
-		audio.play();
-	}
-
 	return (
 	<div>
-		<button onClick={onPadClick}>
-			{props.text}
-		</button>
+		{props.text}
+		<audio src={props.sound} controls></audio>
 		<br></br>
 	</div>
 )};
