@@ -1,19 +1,26 @@
-import React from 'react';
+import { React, useState } from 'react';
 import PropTypes from 'prop-types';
 
 
-const ItemInput = () => {
+const ItemInput = (props) => {
+	const [inputValue, setInputValue] = useState("");
+
 	function handleSubmit(e) {
 		e.preventDefault();
+		props.handleSubmit(inputValue);
 	};
 
-  return (
-  <div>
-	<form onSubmit={handleSubmit}>
-		<input id="itemInput"/>
-		<button type='submit'>Submit</button>
-	</form>
-  </div>
+	function handleChange(e) {
+		setInputValue(e.target.value);
+	}
+
+	return (
+	<div>
+		<form onSubmit={handleSubmit}>
+			<input id="itemInput" onChange={handleChange}/>
+			<button type='submit'>Submit</button>
+		</form>
+	</div>
 )};
 
 

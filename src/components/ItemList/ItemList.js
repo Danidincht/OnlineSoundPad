@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { render } from '@testing-library/react';
 
 
-function ItemList() {
-	var list = ['a','b','c','d','e','f'];
-
+function ItemList(props) {
 	function renderList() {
-		return list.map((item) => <li>{item}</li>);
+		return props.itemList.map((item, index) => <li key={index}>{item}</li>);
 	}
 
 	return (
