@@ -1,8 +1,13 @@
 import { React, useState } from 'react';
 
 const ItemInput = (props) => {
+	const reader = new FileReader();
 	const [inputValue, setInputValue] = useState("");
 	const [fileValue, setFileValue] = useState("");
+
+	reader.onload = () => {
+		setFileValue(reader.result);
+	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -14,7 +19,7 @@ const ItemInput = (props) => {
 	}
 
 	function handleFileChange(e) {
-		setFileValue(e.target.value);
+		reader.readAsDataURL(e.target.files[0]);
 	}
 
 	return (

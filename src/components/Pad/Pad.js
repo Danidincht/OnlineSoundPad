@@ -1,10 +1,10 @@
 import React from 'react';
 
 function Pad(props) {
+	var audio = new Audio(props.sound);
+	audio.controls = true;
+
 	function onPadClick() {
-		console.log(props.sound);
-		var audio = new Audio(props.sound);
-		audio.controls = true;
 		audio.play();
 	}
 
