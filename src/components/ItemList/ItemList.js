@@ -5,14 +5,16 @@ import { render } from '@testing-library/react';
 
 function ItemList(props) {
 	function renderList() {
-		return props.itemList.map((item, index) => <li key={index}>{item}</li>);
+		return props.itemList.map((item, index) => 
+			<p>
+				<button key={index}>{item}</button>
+			</p>
+		);
 	}
 
 	return (
 	<div>
-		<ul>
-			{renderList()}
-		</ul>
+		{renderList()}
 	</div>
 )};
 
