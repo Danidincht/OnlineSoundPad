@@ -1,20 +1,10 @@
 import './App.css';
-import ItemInput from './components/ItemInput/ItemInput';
-import ItemList from './components/ItemList/ItemList';
-import { useState } from 'react';
+import SoundPad from './components/SoundPad/SoundPad';
 
 function App() {
-	var [itemList, setItemList] = useState([]);
-	function handleSubmit(itemValue) {
-		itemList.push(itemValue);
-		setItemList([...itemList]);
-	}
 
 	return (
-	<div className="App">
-		<ItemInput handleSubmit={handleSubmit}></ItemInput>
-		<ItemList itemList={itemList}></ItemList>
-	</div>
+		<SoundPad></SoundPad>
 	);
 }
 
