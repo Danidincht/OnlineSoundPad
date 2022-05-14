@@ -1,6 +1,4 @@
 import { React, useState } from 'react';
-import PropTypes from 'prop-types';
-
 
 const ItemInput = (props) => {
 	const [inputValue, setInputValue] = useState("");
@@ -22,10 +20,5 @@ const ItemInput = (props) => {
 		</form>
 	</div>
 )};
-
-
-ItemInput.propTypes = {};
-
-ItemInput.defaultProps = {};
 
 export default ItemInput;

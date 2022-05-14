@@ -14,7 +14,4 @@ function ItemList(props) {
 	</div>
 )};
 
-ItemList.propTypes = {};
-ItemList.defaultProps = {};
-
 export default ItemList;

@@ -14,7 +14,4 @@ function Pad(props) {
 	</div>
 )};
 
-Pad.propTypes = {};
-Pad.defaultProps = {};
-
 export default Pad;
