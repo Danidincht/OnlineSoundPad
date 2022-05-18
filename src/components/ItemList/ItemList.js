@@ -27,8 +27,7 @@ function ItemList(props) {
 					{itemMap.get(key).text} | 
 					<Pad 
 						id={key}
-						padNode={props.itemsNode}
-						onPlay={onPadPlay}>
+						padNode={props.itemsNode}>
 					</Pad>
 				</div>
 			)
