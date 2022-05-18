@@ -12,6 +12,12 @@ function Pad(props) {
 		.on((data) => {
 			file = data.file;
 			isPlaying = data.isPlaying;
+			if(audioElementRef.current != null) {
+				if(isPlaying)
+					audioElementRef.current.play();
+				else
+					audioElementRef.current.pause();
+			}
 		});
 
 	function onPlay(e) {
