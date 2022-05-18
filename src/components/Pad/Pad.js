@@ -1,12 +1,26 @@
 import { React } from 'react';
 
 function Pad(props) {
+	var file,
+		isPlaying,
+		audioElementRef = createRef();
+
+	props
+		.padNode
+		.get(props.id)
+		.get('audio')
+		.on((data) => {
+			file = data.file;
+			isPlaying = data.isPlaying;
+		});
 	return (
-	<div>
-		{props.text}
-		<audio src={props.sound} controls></audio>
-		<br></br>
-	</div>
+	<span>
+		<audio 
+			controls
+			ref={audioElementRef}
+			src={file}
+		></audio>
+	</span>
 )};
 
 export default Pad;
