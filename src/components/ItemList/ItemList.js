@@ -5,14 +5,6 @@ import { useState, useEffect } from 'react';
 function ItemList(props) {
 	const [itemMap, setItemMap] = useState(new Map());
 
-	function renderList() {
-		return [...itemMap.keys()].map(key => {
-			var padItem = itemMap.get(key);
-			return <Pad key={key} text={padItem.text} sound={padItem.file}></Pad>
-		});
-	}
-
-
 	useEffect(() => {
 		var firstRender = true;
 		
@@ -29,7 +21,18 @@ function ItemList(props) {
 
 	return (
 	<div>
-		{renderList()}
+		{
+			[...itemMap.keys()].map((key) =>
+				<div key={key}>
+					{itemMap.get(key).text} | 
+					<Pad 
+						id={key}
+						padNode={props.itemsNode}
+						onPlay={onPadPlay}>
+					</Pad>
+				</div>
+			)
+		}
 	</div>
 )};
 
