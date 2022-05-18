@@ -11,7 +11,7 @@ const ItemInput = (props) => {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		props.itemsNode.set({text: inputValue, file: fileValue});
+		props.itemsNode.set({text: inputValue, audio: { file: fileValue, isPlaying: false }});
 	};
 
 	function handleTextChange(e) {
