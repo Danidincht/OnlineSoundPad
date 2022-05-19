@@ -1,0 +1,11 @@
+- YouTube
+https://developers.google.com/youtube/terms/required-minimum-functionality
+https://developers.google.com/youtube/terms/developer-policies
+https://developers.google.com/youtube/v3
+
+Player must be at least 200x200 in size.
+A page or screen must not have more than one YouTube player that automatically plays content simultaneously.
+YouTube embedded player MUST be fully visible.
+
+- Browser
+Not all browsers allow automatic playing (Safari).
