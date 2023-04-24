@@ -13,7 +13,10 @@ function SoundPad() {
 		localStorage: false
 	};
 
+	const ROOM_NAME = 'AAAF';
+
 	var gun = Gun(opt);
+	var roomNode = gun.get(ROOM_NAME);
 	var soundPadNode = roomNode.get('soundPad');
 	var itemsNode = soundPadNode.get('items');
 
