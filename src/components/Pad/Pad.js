@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect, createRef } from 'react';
 
 function Pad(props) {
 	var file,
@@ -18,26 +18,34 @@ function Pad(props) {
 				else
 					audioElementRef.current.pause();
 			}
-		});
+		}, true);
 
 	function onPlay(e) {
 		e.preventDefault();
-		props.padNode.get(props.id).put({audio: { isPlaying: true }})
+		props.padNode.get(props.id).put({audio: { isPlaying: true }});
 	}
 
 	function onPause(e) {
 		e.preventDefault();
-		props.padNode.get(props.id).put({audio: { isPlaying: false }})
+		props.padNode.get(props.id).put({audio: { isPlaying: false }});
+	}
+
+	function onCan(e) {
+		e.preventDefault();
+		if(isPlaying) e.target.play();
 	}
 
 	return (
 	<span>
+		{String(isPlaying)}
 		<audio 
+			// crossorigin="anonymous"
 			controls
 			ref={audioElementRef}
 			src={file}
 			onPlay={onPlay}
 			onPause={onPause}
+			onCanPlay={onCan}
 		></audio>
 	</span>
 )};
