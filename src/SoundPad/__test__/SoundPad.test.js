@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from '../App';
+import SoundPad from '../SoundPad';
 
 test('renders basic main window text', () => {
-  render(<App />);
+  render(<SoundPad />);
   const linkElement = screen.getByText(/Main window/i);
   expect(linkElement).toBeInTheDocument();
 });
