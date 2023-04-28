@@ -10,8 +10,9 @@ function SoundPad() {
 		<div>
 			Sound Pad Online
 			{
-				items.map((item) => (
-					<PadItem 
+				items.map((item, index) => (
+					<PadItem
+						key={index}
 						title={item.title}
 						audio={item.audio}
 					/>
