@@ -4,11 +4,10 @@ exports[`should render the PadItem component 1`] = `
 <body>
   <div>
     <div>
-      <p>
-        PadItem title
-      </p>
-      This is a PadItem
-      <audio />
+      PadItem title
+      <audio
+        controls=""
+      />
     </div>
   </div>
 </body>
