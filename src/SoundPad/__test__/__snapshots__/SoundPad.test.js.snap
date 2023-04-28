@@ -4,7 +4,21 @@ exports[`renders basic main window text 1`] = `
 <body>
   <div>
     <div>
-      Main window
+      Sound Pad Online
+      <div>
+        PadItem1
+        <audio
+          controls=""
+          src="https://www.sousound.com/music/healing/healing_01.mp3"
+        />
+      </div>
+      <div>
+        PadItem2
+        <audio
+          controls=""
+          src="https://www.sousound.com/music/healing/healing_02.mp3"
+        />
+      </div>
     </div>
   </div>
 </body>
