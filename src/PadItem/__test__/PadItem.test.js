@@ -2,13 +2,9 @@ import { render, screen } from "@testing-library/react";
 import PadItem from '../PadItem';
 
 it('should render the PadItem component', () => {
-	// Given
-	const component = <PadItem />;
-
-	// When
-	render(component);
+	// Given -  When
+	const page = render(<PadItem />).baseElement;
 
 	// Then
-	const linkElement = screen.getByText(/This is a PadItem/i);
-	expect(linkElement).toBeInTheDocument();
+	expect(page).toMatchSnapshot();
 });

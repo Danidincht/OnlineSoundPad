@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the PadItem component 1`] = `
+<body>
+  <div>
+    <div>
+      <p>
+        PadItem title
+      </p>
+      This is a PadItem
+      <audio />
+    </div>
+  </div>
+</body>
+`;
