@@ -1,5 +1,5 @@
 import './SoundPad.css';
-import PadItem from '../PadItem/PadItem';
+import PadItem from '#c/PadItem';
 
 function SoundPad() {
 	const items = [
