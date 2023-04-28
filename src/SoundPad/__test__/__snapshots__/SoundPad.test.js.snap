@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders basic main window text 1`] = `
+<body>
+  <div>
+    <div>
+      Main window
+    </div>
+  </div>
+</body>
+`;
