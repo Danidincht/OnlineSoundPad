@@ -1,0 +1,13 @@
+{
+	"tasks": [
+		{
+			"label": "Start react project",
+			"type": "shell",
+			"command": "npm run start",
+			"problemMatcher": [],
+			"runOptions": {
+				"runOn": "folderOpen"
+			}
+		}
+	]
+}
