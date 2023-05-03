@@ -1,7 +1,7 @@
 jest.mock('gun');
 
-import { getGunInstance, getItemsNode } from "../GunJSHelper";
-import Gun from "gun";
+import { getGunInstance, getItemsNode } from '../GunJSHelper';
+import Gun from 'gun';
 
 afterEach(jest.resetModules);
 
