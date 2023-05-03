@@ -1,16 +1,35 @@
 const react = require('eslint-plugin-react');
+const jest = require('eslint-plugin-jest');
+const recommended = require('@eslint/js/src/configs/eslint-recommended');
 
-module.exports = [{
-	rules: {
-		quotes: ['error', 'single'],
-		'jsx-quotes': ['error', 'prefer-single']
-	},
-	languageOptions: {
-		parserOptions: {
-			ecmaFeatures: {
-				jsx: true,
-			},
+const globals = require('globals');
+
+// const recommended = require('eslint-config-recommended');
+
+module.exports = [
+	{
+		files: ['src/**/*.{js,jsx,mjs,cjs,ts,tsx}'],
+		rules: {
+			...recommended.rules,
+			quotes: ['error', 'single'],
+			'jsx-quotes': ['error', 'prefer-single'],
+			'react/jsx-uses-react': 'error',
+			'react/jsx-uses-vars': 'error',
 		},
-	},
-	plugins: [react],
-}];
+		languageOptions: {
+			parserOptions: {
+				ecmaFeatures: {
+					jsx: true,
+				},
+			},
+			globals: {
+				...globals.browser,
+				...jest.environments.globals.globals
+			}
+		},
+		plugins: {
+			react,
+			jest
+		}
+	}
+];
