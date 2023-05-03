@@ -1,32 +1,40 @@
 import './SoundPad.css';
 import PadItem from '#c/PadItem';
+import { useState, useEffect, useRef } from 'react';
+import { getItemsNode } from './GunJSHelper';
 
 function SoundPad() {
-	const items = [
-		createPadItemContent('PadItem1', 'https://www.sousound.com/music/healing/healing_01.mp3'),
-		createPadItemContent('PadItem2', 'https://www.sousound.com/music/healing/healing_02.mp3')
-	];
+	const [itemMap, setItemMap] = useState(new Map());
+	var itemsNode = useRef(null);
+
+	useEffect(() => {
+		if(!itemsNode.current) {
+			itemsNode.current = getItemsNode('AAAF');
+
+			itemsNode.current
+				.map()
+				.on((data, key) => {
+					if(data !== null) {
+						setItemMap(prevState => new Map(prevState).set(key, data));
+					}
+				});
+		}
+	}, [itemsNode]);
+
 	return (
 		<div>
 			Sound Pad Online
 			{
-				items.map((item, index) => (
+				[...itemMap.keys()].map((key, index) =>
 					<PadItem
 						key={index}
-						title={item.title}
-						audio={item.audio}
+						title={itemMap.get(key).text}
+						audio={itemMap.get(key).audio}
 					/>
-				))
+			)
 			}
 		</div>
 	);
-}
-
-function createPadItemContent(title, audio) {
-	return {
-		title,
-		audio
-	}
 }
 
 export default SoundPad;
