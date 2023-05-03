@@ -337,6 +337,7 @@ module.exports = function (webpackEnv) {
       ],
     },
     module: {
+      noParse: /gun\.js$/,
       strictExportPresence: true,
       rules: [
         // Handle node_modules packages that contain sourcemaps
