@@ -22,7 +22,8 @@
     "test:watch": "react-scripts test",
     "test": "react-scripts test --watchAll=false",
     "ci": "npm install && npm run build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "patch-package"
   },
   "imports": {
     "#c/*": "./src/*/*"
