@@ -28,8 +28,5 @@ jobs:
         run: git rev-parse --short HEAD
       - name: Run install dependencies and build
         run: npm run ci
-  test:
-    runs-on: ubuntu-latest
-    steps:
       - name: Run tests
         run: npm run test
