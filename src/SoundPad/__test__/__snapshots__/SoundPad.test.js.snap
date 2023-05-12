@@ -1,22 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders basic main window text 1`] = `
+exports[`renders basic Sound Pad layout 1`] = `
+<body>
+  <div>
+    <div>
+      Sound Pad Online
+    </div>
+  </div>
+</body>
+`;
+
+exports[`renders items from GunJS 1`] = `
 <body>
   <div>
     <div>
       Sound Pad Online
       <div>
-        PadItem1
+        text1
         <audio
           controls=""
-          src="https://www.sousound.com/music/healing/healing_01.mp3"
+          src="[object Object]"
         />
       </div>
       <div>
-        PadItem2
+        text2
         <audio
           controls=""
-          src="https://www.sousound.com/music/healing/healing_02.mp3"
+          src="[object Object]"
         />
       </div>
     </div>

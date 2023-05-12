@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-scripts/config/webpack.config.js b/node_modules/react-scripts/config/webpack.config.js
+index e465d8e..1433da8 100644
+--- a/node_modules/react-scripts/config/webpack.config.js
++++ b/node_modules/react-scripts/config/webpack.config.js
+@@ -347,6 +347,7 @@ module.exports = function (webpackEnv) {
+       ],
+     },
+     module: {
++      noParse: /gun\.js$/,
+       strictExportPresence: true,
+       rules: [
+         // Handle node_modules packages that contain sourcemaps
