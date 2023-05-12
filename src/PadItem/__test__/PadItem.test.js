@@ -5,6 +5,7 @@ it('should render the PadItem component', () => {
 	// Given
 	const component = (<PadItem
 		title = 'PadItem title'
+		audio = 'audio src'
 	/>);
 
 	// When
