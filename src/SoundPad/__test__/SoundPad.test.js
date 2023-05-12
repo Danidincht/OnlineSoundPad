@@ -14,17 +14,17 @@ const setItemMapMock = jest.fn()
 
 beforeEach(() => {
 	useStateMock.mockImplementation((init) => [init, setItemMapMock])
-});
-
-it('renders basic Sound Pad layout', () => {
-	// Given
 	getItemsNode.mockReturnValue({
 		map: () => ({
 			on: jest.fn()
 		})
 	});
+});
 
-	// When
+afterEach(jest.clearAllMocks);
+
+it('renders basic Sound Pad layout', () => {
+	// Given - When
 	const page = render(<SoundPad />).baseElement;
 
 	// Then
@@ -38,11 +38,6 @@ it('renders items from GunJS', () => {
 		[2, {text: 'text2', audio: {}}]
 	]);
 	useStateMock.mockImplementation(() => [items, setItemMapMock])
-	getItemsNode.mockReturnValue({
-		map: () => ({
-			on: jest.fn()
-		})
-	});
 
 	// When
 	const page = render(<SoundPad />).baseElement;
@@ -51,40 +46,40 @@ it('renders items from GunJS', () => {
 	expect(page).toMatchSnapshot();
 });
 
-it('Adds items to itemMap to render if data is not null', () => {
-	// Given
-	var gunJSOnCallback;
-	getItemsNode.mockReturnValue({
-		map: () => ({
-			on: (cb) => {
-				gunJSOnCallback = cb;
-			}
-		})
+describe('itemsNode on function callback', () => {
+	let gunJSOnCallback;
+	beforeEach(() => {
+		gunJSOnCallback = undefined;
+		getItemsNode.mockReturnValue({
+			map: () => ({
+				on: (cb) => {
+					gunJSOnCallback = cb;
+				}
+			})
+		});
 	});
-	render(<SoundPad />).baseElement;
 
-	// When
-	gunJSOnCallback('non-null object');
+	it('Adds items to itemMap to render if data is not null', () => {
+		// Given
+		render(<SoundPad />).baseElement;
 
-	// Then
-	expect(setItemMapMock).toBeCalledTimes(1);
-});
+		// When
+		gunJSOnCallback('non-null object');
 
-it('Does not add item to itemMap to render if data is null', () => {
-	// Given
-	var gunJSOnCallback;
-	getItemsNode.mockReturnValue({
-		map: () => ({
-			on: (cb) => {
-				gunJSOnCallback = cb;
-			}
-		})
+		// Then
+		expect(setItemMapMock).toBeCalledTimes(1);
 	});
-	render(<SoundPad />).baseElement;
 
-	// When
-	gunJSOnCallback(null);
+	it('Does not add item to itemMap to render if data is null', () => {
+		// Given
+		render(<SoundPad />).baseElement;
 
-	// Then
-	expect(setItemMapMock).toBeCalledTimes(0);
+		// When
+		gunJSOnCallback(null);
+
+		// Then
+		console.log(gunJSOnCallback);
+		expect(gunJSOnCallback).toBeDefined();
+		expect(setItemMapMock).toBeCalledTimes(0);
+	});
 });
