@@ -12,6 +12,10 @@ describe('getGunInstance', () => {
 		
 		// Then
 		expect(Gun).toBeCalledTimes(1);
+		expect(Gun).toBeCalledWith(expect.objectContaining({
+			peers: 'https://gun-manhattan.herokuapp.com/gun',
+			localStorage: false
+		}));
 	});
 });
 
@@ -28,6 +32,7 @@ describe('getItemsNode', () => {
 		getItemsNode(roomName);
 
 		// Then
+		expect(Gun).toBeCalledTimes(1);
 		expect(gunMock.get).toBeCalledTimes(3);
 		expect(gunMock.get.mock.calls[0][0]).toBe(roomName);
 		expect(gunMock.get.mock.calls[1][0]).toBe('soundPad');
