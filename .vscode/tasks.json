@@ -8,6 +8,52 @@
 			"runOptions": {
 				"runOn": "folderOpen"
 			}
+		},
+		{
+			"label": "Move test file to __test__ folder",
+			"hide": true,
+			"command": "mkdir src/${input:componentName}/__test__; mv src/${input:componentName}/${input:componentName}.test.js src/${input:componentName}/__test__",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		},
+		{
+			"label": "Create React component",
+			"command": "npx --yes generate-react-cli component ${input:componentName}",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		},
+		{ // Create react component and move test file to __test__ folder
+			"label": "Create react component with tests",
+			"dependsOn": ["Create React component", "Move test file to __test__ folder"],
+			"dependsOrder": "sequence"
 		}
+	],
+	"inputs": [
+		{
+			"id": "componentName",
+			"type": "promptString",
+			"description": "Component name"
+		},
 	]
 }
