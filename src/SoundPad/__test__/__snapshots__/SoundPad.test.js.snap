@@ -8,6 +8,12 @@ exports[`renders basic Sound Pad layout 1`] = `
       <div
         class="PadEditor"
       >
+        <form>
+          <input
+            placeholder="Pad title"
+            type="text"
+          />
+        </form>
         PadEditor Component
       </div>
     </div>
@@ -23,6 +29,12 @@ exports[`renders items from GunJS 1`] = `
       <div
         class="PadEditor"
       >
+        <form>
+          <input
+            placeholder="Pad title"
+            type="text"
+          />
+        </form>
         PadEditor Component
       </div>
       <div>

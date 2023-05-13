@@ -6,6 +6,12 @@ exports[`PadEditor it should render the PadEditor component 1`] = `
     <div
       class="PadEditor"
     >
+      <form>
+        <input
+          placeholder="Pad title"
+          type="text"
+        />
+      </form>
       PadEditor Component
     </div>
   </div>
