@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PadEditor it should render the PadEditor component 1`] = `
+<body>
+  <div>
+    <div
+      class="PadEditor"
+    >
+      PadEditor Component
+    </div>
+  </div>
+</body>
+`;
