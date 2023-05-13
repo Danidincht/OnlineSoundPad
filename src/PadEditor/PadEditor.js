@@ -2,9 +2,9 @@ import React from 'react';
 import './PadEditor.css';
 
 const PadEditor = () => (
-	<div className="PadEditor">
+	<div className='PadEditor'>
 		<form>
-			<input type="text" placeholder="Pad title"/>
+			<input name='title' type='text' placeholder='Pad title' onChange={handleTitleChange}/>
 		</form>
 		PadEditor Component
 	</div>
