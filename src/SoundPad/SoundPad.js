@@ -2,6 +2,7 @@ import './SoundPad.css';
 import PadItem from '#c/PadItem';
 import { useState, useEffect, useRef } from 'react';
 import { getItemsNode } from './GunJSHelper';
+import PadEditor from '#c/PadEditor';
 
 function SoundPad() {
 	const [itemMap, setItemMap] = useState(new Map());
@@ -24,6 +25,7 @@ function SoundPad() {
 	return (
 		<div>
 			Sound Pad Online
+			<PadEditor />
 			{
 				[...itemMap.keys()].map((key, index) =>
 					<PadItem

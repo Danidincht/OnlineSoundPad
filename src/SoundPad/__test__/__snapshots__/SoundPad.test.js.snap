@@ -5,6 +5,11 @@ exports[`renders basic Sound Pad layout 1`] = `
   <div>
     <div>
       Sound Pad Online
+      <div
+        class="PadEditor"
+      >
+        PadEditor Component
+      </div>
     </div>
   </div>
 </body>
@@ -15,6 +20,11 @@ exports[`renders items from GunJS 1`] = `
   <div>
     <div>
       Sound Pad Online
+      <div
+        class="PadEditor"
+      >
+        PadEditor Component
+      </div>
       <div>
         text1
         <audio
