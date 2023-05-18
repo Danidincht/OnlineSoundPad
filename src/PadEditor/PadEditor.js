@@ -12,7 +12,7 @@ function PadEditor () {
 
 	const handleFileChange = (event) => {
 		var file = event.target.files[0];
-		if(file.type.startsWith('audio')) {
+		if(file && file.type.startsWith('audio')) {
 			setAudioInputValue(file);
 		}
 	};

@@ -122,6 +122,24 @@ describe('PadEditor', () => {
 			expect(setAudioInputValueMock).not.toBeCalled();
 		});
 
+		it('onChange event does not save null files', () => {
+			// Given
+			const newFile = null,
+				eventData = {
+					target: {
+						files: [newFile]
+					}
+				},
+				changeEvent = createEvent.change(audioInput, eventData);
+
+			// When;
+			fireEvent(audioInput, changeEvent);
+
+			// Then
+			expect(setTitleInputValueMock).not.toBeCalled();
+			expect(setAudioInputValueMock).not.toBeCalled();
+		});
+
 
 	});
 });
