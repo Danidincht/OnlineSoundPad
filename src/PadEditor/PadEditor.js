@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import './PadEditor.css';
 
 function PadEditor () {
 	const [titleInputValue, setItemInputValue] = useState(''),
-		setAudioInputValue = useState(null)[0];
+		[audioInputValue, setAudioInputValue] = useState(null);
 
 	const handleTitleChange = (event)  => {
 		event.preventDefault();
