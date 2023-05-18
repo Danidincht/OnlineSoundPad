@@ -14,7 +14,6 @@ function PadEditor () {
 			<form>
 				<input name='title' type='text' placeholder='Pad title' onChange={handleTitleChange} value={titleInputValue}/>
 			</form>
-			PadEditor Component
 		</div>
 	);
 }
