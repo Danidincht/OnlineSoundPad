@@ -8,12 +8,14 @@ import { getItemsNode } from '../GunJSHelper';
 jest.mock('react', () => ({
 	...jest.requireActual('react'),
 	useState: jest.fn()
-}))
-const setItemMapMock = jest.fn()
+}));
+const setItemMapMock = jest.fn();
 
+jest.mock('#c/PadEditor', () => 'PadEditorMock');
+jest.mock('#c/PadItem', () => 'PadItemMock');
 
 beforeEach(() => {
-	useStateMock.mockImplementation((init) => [init, setItemMapMock])
+	useStateMock.mockImplementation((init) => [init, setItemMapMock]);
 	getItemsNode.mockReturnValue({
 		map: () => ({
 			on: jest.fn()
@@ -37,7 +39,7 @@ it('renders items from GunJS', () => {
 		[1, {text: 'text1', audio: {}}],
 		[2, {text: 'text2', audio: {}}]
 	]);
-	useStateMock.mockImplementation(() => [items, setItemMapMock])
+	useStateMock.mockImplementation(() => [items, setItemMapMock]);
 
 	// When
 	const page = render(<SoundPad />).baseElement;
