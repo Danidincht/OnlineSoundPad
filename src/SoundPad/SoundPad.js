@@ -1,7 +1,7 @@
 import './SoundPad.css';
-import PadItem from '#c/PadItem';
 import { useState, useEffect, useRef } from 'react';
 import { getItemsNode } from './GunJSHelper';
+import PadItem from '#c/PadItem';
 import PadEditor from '#c/PadEditor';
 
 function SoundPad() {

@@ -5,18 +5,7 @@ exports[`renders basic Sound Pad layout 1`] = `
   <div>
     <div>
       Sound Pad Online
-      <div
-        class="PadEditor"
-      >
-        <form>
-          <input
-            name="title"
-            placeholder="Pad title"
-            type="text"
-            value=""
-          />
-        </form>
-      </div>
+      <padeditormock />
     </div>
   </div>
 </body>
@@ -27,32 +16,15 @@ exports[`renders items from GunJS 1`] = `
   <div>
     <div>
       Sound Pad Online
-      <div
-        class="PadEditor"
-      >
-        <form>
-          <input
-            name="title"
-            placeholder="Pad title"
-            type="text"
-            value="[object Map]"
-          />
-        </form>
-      </div>
-      <div>
-        text1
-        <audio
-          controls=""
-          src="[object Object]"
-        />
-      </div>
-      <div>
-        text2
-        <audio
-          controls=""
-          src="[object Object]"
-        />
-      </div>
+      <padeditormock />
+      <paditemmock
+        audio="[object Object]"
+        title="text1"
+      />
+      <paditemmock
+        audio="[object Object]"
+        title="text2"
+      />
     </div>
   </div>
 </body>

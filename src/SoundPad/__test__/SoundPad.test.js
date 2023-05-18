@@ -11,6 +11,8 @@ jest.mock('react', () => ({
 }));
 const setItemMapMock = jest.fn();
 
+jest.mock('#c/PadEditor', () => 'PadEditorMock');
+jest.mock('#c/PadItem', () => 'PadItemMock');
 
 beforeEach(() => {
 	useStateMock.mockImplementation((init) => [init, setItemMapMock]);
@@ -37,7 +39,7 @@ it('renders items from GunJS', () => {
 		[1, {text: 'text1', audio: {}}],
 		[2, {text: 'text2', audio: {}}]
 	]);
-	useStateMock.mockImplementation(() => [items, setItemMapMock])
+	useStateMock.mockImplementation(() => [items, setItemMapMock]);
 
 	// When
 	const page = render(<SoundPad />).baseElement;
