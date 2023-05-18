@@ -9,30 +9,24 @@ jest.mock('react', () => ({
 }));
 const setInputTitleValueMock = jest.fn();
 
-const selectors = {
-	titleInput: 'input[name=title]'
-};
+const titleInputSelector = 'input[name=title]';
 
 describe('PadEditor', () => {
-	it('it should render the PadEditor component', () => {
-		// Given
+	let titleInput,
+		container;
+
+	beforeEach(() => {
 		useStateMock.mockImplementation((init) => [init, setInputTitleValueMock]);
-		const component = (<PadEditor />);
+		({container} = render(<PadEditor />));
+		titleInput = container.querySelector(titleInputSelector);
+	});
 
-		// When
-		const page = render(component).baseElement;
-
-		// Then
-		expect(page).toMatchSnapshot();
+	it('it should render the PadEditor component', () => {
+		// Given - When - Then
+		expect(container).toMatchSnapshot();
 	});
 
 	describe('Title input', () => {
-		let titleInput;
-		beforeEach(() => {
-			useStateMock.mockImplementation((init) => [init, setInputTitleValueMock]);
-			const {container} = render(<PadEditor />);
-			titleInput = container.querySelector(selectors.titleInput);
-		});
 		it('Has expected properties', () => {
 			// Given - When - Then
 			expect(titleInput.getAttribute('placeholder')).toEqual('Pad title');

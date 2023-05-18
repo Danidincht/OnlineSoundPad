@@ -16,7 +16,6 @@ exports[`renders basic Sound Pad layout 1`] = `
             value=""
           />
         </form>
-        PadEditor Component
       </div>
     </div>
   </div>
@@ -39,7 +38,6 @@ exports[`renders items from GunJS 1`] = `
             value="[object Map]"
           />
         </form>
-        PadEditor Component
       </div>
       <div>
         text1

@@ -1,21 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PadEditor it should render the PadEditor component 1`] = `
-<body>
-  <div>
-    <div
-      class="PadEditor"
-    >
-      <form>
-        <input
-          name="title"
-          placeholder="Pad title"
-          type="text"
-          value=""
-        />
-      </form>
-      PadEditor Component
-    </div>
+<div>
+  <div
+    class="PadEditor"
+  >
+    <form>
+      <input
+        name="title"
+        placeholder="Pad title"
+        type="text"
+        value=""
+      />
+    </form>
   </div>
-</body>
+</div>
 `;
