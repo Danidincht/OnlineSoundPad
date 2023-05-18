@@ -119,12 +119,11 @@ describe('PadEditor', () => {
 		});
 
 		const createFileEvent = (newFile) => {
-			const eventData = {
+			return createEvent.change(audioInput, {
 				target: {
 					files: [newFile]
 				}
-			};
-			return createEvent.change(audioInput, eventData);
+			});
 		};
 	});
 });
