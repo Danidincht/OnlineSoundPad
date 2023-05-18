@@ -12,6 +12,11 @@ exports[`PadEditor it should render the PadEditor component 1`] = `
         type="text"
         value=""
       />
+      <input
+        accept="audio/*"
+        name="audio"
+        type="file"
+      />
     </form>
   </div>
 </div>
