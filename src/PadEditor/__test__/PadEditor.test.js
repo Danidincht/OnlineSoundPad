@@ -7,7 +7,8 @@ jest.mock('react', () => ({
 	...jest.requireActual('react'),
 	useState: jest.fn()
 }));
-const setInputTitleValueMock = jest.fn();
+const setTitleInputValueMock = jest.fn(),
+	setAudioInputValueMock = jest.fn();
 
 const selector = {
 	titleInputSelector: 'input[name=title]',
@@ -20,7 +21,10 @@ describe('PadEditor', () => {
 		audioInput;
 
 	beforeEach(() => {
-		useStateMock.mockImplementation((init) => [init, setInputTitleValueMock]);
+		useStateMock
+			.mockImplementationOnce((init) => [init, setTitleInputValueMock])
+			.mockImplementationOnce((init) => [init, setAudioInputValueMock]);
+
 		({container} = render(<PadEditor />));
 		titleInput = container.querySelector(selector.titleInputSelector);
 		audioInput = container.querySelector(selector.audioInputSelector);
@@ -40,7 +44,7 @@ describe('PadEditor', () => {
 			expect(titleInput.getAttribute('value')).toEqual('');
 		});
 
-		it('onChange event saves inputs value', () => {
+		it('onChange event saves input value', () => {
 			// Given
 			const newValue = 'new value',
 				eventData = {
@@ -56,8 +60,10 @@ describe('PadEditor', () => {
 			fireEvent(titleInput, changeEvent);
 
 			// Then
-			expect(setInputTitleValueMock).toBeCalledTimes(1);
-			expect(setInputTitleValueMock).toBeCalledWith(newValue);
+			expect(setAudioInputValueMock).not.toBeCalled();
+			
+			expect(setTitleInputValueMock).toBeCalledTimes(1);
+			expect(setTitleInputValueMock).toBeCalledWith(newValue);
 
 			expect(changeEvent.preventDefault).toBeCalledTimes(1);
 		});
@@ -71,5 +77,51 @@ describe('PadEditor', () => {
 			expect(audioInput.getAttribute('accept')).toEqual('audio/*');
 			expect(audioInput.getAttribute('files')).toEqual(null);
 		});
+
+		it('onChange event saves input value', () => {
+			// Given
+			const newFile = {
+					name: 'fileName',
+					type: 'audio/mpeg'
+				},
+				eventData = {
+					target: {
+						files: [newFile]
+					}
+				},
+				changeEvent = createEvent.change(audioInput, eventData);
+
+			// When;
+			fireEvent(audioInput, changeEvent);
+
+			// Then
+			expect(setTitleInputValueMock).not.toBeCalled();
+
+			expect(setAudioInputValueMock).toBeCalledTimes(1);
+			expect(setAudioInputValueMock).toBeCalledWith(newFile);
+		});
+
+		it('onChange event does not save non-audio files', () => {
+			// Given
+			const newFile = {
+					name: 'fileName',
+					type: 'image/mpeg'
+				},
+				eventData = {
+					target: {
+						files: [newFile]
+					}
+				},
+				changeEvent = createEvent.change(audioInput, eventData);
+
+			// When;
+			fireEvent(audioInput, changeEvent);
+
+			// Then
+			expect(setTitleInputValueMock).not.toBeCalled();
+			expect(setAudioInputValueMock).not.toBeCalled();
+		});
+
+
 	});
 });
