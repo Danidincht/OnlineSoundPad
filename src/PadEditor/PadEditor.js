@@ -3,7 +3,7 @@ import './PadEditor.css';
 
 function PadEditor () {
 	const [titleInputValue, setItemInputValue] = useState(''),
-		[audioInputValue, setAudioInputValue] = useState(null);
+		setAudioInputValue = useState(null)[0];
 
 	const handleTitleChange = (event)  => {
 		event.preventDefault();
