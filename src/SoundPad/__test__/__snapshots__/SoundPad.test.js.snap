@@ -10,8 +10,10 @@ exports[`renders basic Sound Pad layout 1`] = `
       >
         <form>
           <input
+            name="title"
             placeholder="Pad title"
             type="text"
+            value=""
           />
         </form>
         PadEditor Component
@@ -31,8 +33,10 @@ exports[`renders items from GunJS 1`] = `
       >
         <form>
           <input
+            name="title"
             placeholder="Pad title"
             type="text"
+            value="[object Map]"
           />
         </form>
         PadEditor Component
