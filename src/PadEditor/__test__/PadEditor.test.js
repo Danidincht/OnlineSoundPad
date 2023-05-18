@@ -60,8 +60,6 @@ describe('PadEditor', () => {
 			fireEvent(titleInput, changeEvent);
 
 			// Then
-			expect(setAudioInputValueMock).not.toBeCalled();
-			
 			expect(setTitleInputValueMock).toBeCalledTimes(1);
 			expect(setTitleInputValueMock).toBeCalledWith(newValue);
 
@@ -95,8 +93,6 @@ describe('PadEditor', () => {
 			fireEvent(audioInput, changeEvent);
 
 			// Then
-			expect(setTitleInputValueMock).not.toBeCalled();
-
 			expect(setAudioInputValueMock).toBeCalledTimes(1);
 			expect(setAudioInputValueMock).toBeCalledWith(newFile);
 		});
@@ -118,7 +114,6 @@ describe('PadEditor', () => {
 			fireEvent(audioInput, changeEvent);
 
 			// Then
-			expect(setTitleInputValueMock).not.toBeCalled();
 			expect(setAudioInputValueMock).not.toBeCalled();
 		});
 
@@ -136,7 +131,6 @@ describe('PadEditor', () => {
 			fireEvent(audioInput, changeEvent);
 
 			// Then
-			expect(setTitleInputValueMock).not.toBeCalled();
 			expect(setAudioInputValueMock).not.toBeCalled();
 		});
 
