@@ -13,6 +13,7 @@ function PadEditor () {
 		<div className='PadEditor'>
 			<form>
 				<input name='title' type='text' placeholder='Pad title' onChange={handleTitleChange} value={titleInputValue}/>
+				<input name='audio' type='file' accept='audio/*'/>
 			</form>
 		</div>
 	);
