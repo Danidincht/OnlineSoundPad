@@ -8,12 +8,12 @@ import { getItemsNode } from '../GunJSHelper';
 jest.mock('react', () => ({
 	...jest.requireActual('react'),
 	useState: jest.fn()
-}))
-const setItemMapMock = jest.fn()
+}));
+const setItemMapMock = jest.fn();
 
 
 beforeEach(() => {
-	useStateMock.mockImplementation((init) => [init, setItemMapMock])
+	useStateMock.mockImplementation((init) => [init, setItemMapMock]);
 	getItemsNode.mockReturnValue({
 		map: () => ({
 			on: jest.fn()
