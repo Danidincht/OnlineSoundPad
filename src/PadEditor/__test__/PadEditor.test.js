@@ -82,12 +82,7 @@ describe('PadEditor', () => {
 					name: 'fileName',
 					type: 'audio/mpeg'
 				},
-				eventData = {
-					target: {
-						files: [newFile]
-					}
-				},
-				changeEvent = createEvent.change(audioInput, eventData);
+				changeEvent = createFileEvent(newFile);
 
 			// When;
 			fireEvent(audioInput, changeEvent);
@@ -103,12 +98,7 @@ describe('PadEditor', () => {
 					name: 'fileName',
 					type: 'image/mpeg'
 				},
-				eventData = {
-					target: {
-						files: [newFile]
-					}
-				},
-				changeEvent = createEvent.change(audioInput, eventData);
+				changeEvent = createFileEvent(newFile);
 
 			// When;
 			fireEvent(audioInput, changeEvent);
@@ -119,13 +109,7 @@ describe('PadEditor', () => {
 
 		it('onChange event does not save null files', () => {
 			// Given
-			const newFile = null,
-				eventData = {
-					target: {
-						files: [newFile]
-					}
-				},
-				changeEvent = createEvent.change(audioInput, eventData);
+			const changeEvent = createFileEvent(null);
 
 			// When;
 			fireEvent(audioInput, changeEvent);
@@ -134,6 +118,13 @@ describe('PadEditor', () => {
 			expect(setAudioInputValueMock).not.toBeCalled();
 		});
 
-
+		const createFileEvent = (newFile) => {
+			const eventData = {
+				target: {
+					files: [newFile]
+				}
+			};
+			return createEvent.change(audioInput, eventData);
+		};
 	});
 });
