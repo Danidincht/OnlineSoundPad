@@ -24,6 +24,7 @@ function PadEditor () {
 			<form>
 				<input name='title' type='text' placeholder='Pad title' onChange={handleTitleChange} value={titleInputValue}/>
 				<input name='audio' type='file' accept='audio/*' onChange={handleFileChange}/>
+				<button type='submit'>Save</button>
 			</form>
 		</div>
 	);
