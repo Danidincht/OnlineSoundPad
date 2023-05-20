@@ -11,8 +11,8 @@ jest.mock('react', () => ({
 }));
 const setItemMapMock = jest.fn();
 
-jest.mock('#c/PadEditor', () => 'PadEditorMock');
-jest.mock('#c/PadItem', () => 'PadItemMock');
+jest.mock('#c/PadEditor');
+jest.mock('#c/PadItem');
 
 beforeEach(() => {
 	useStateMock.mockImplementation((init) => [init, setItemMapMock]);
