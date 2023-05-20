@@ -11,8 +11,10 @@ const setTitleInputValueMock = jest.fn(),
 	setAudioInputValueMock = jest.fn();
 
 const selector = {
-	titleInputSelector: 'input[name=title]',
-	audioInputSelector: 'input[name=audio]'
+	titleInput: 'input[name=title]',
+	audioInput: 'input[name=audio]',
+	submitButton: 'button[type=submit]',
+	editorForm: 'form'
 };
 
 describe('PadEditor', () => {
