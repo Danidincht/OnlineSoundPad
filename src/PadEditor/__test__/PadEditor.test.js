@@ -7,6 +7,7 @@ jest.mock('react', () => ({
 	...jest.requireActual('react'),
 	useState: jest.fn()
 }));
+
 const setTitleInputValueMock = jest.fn(),
 	setAudioInputValueMock = jest.fn();
 
@@ -17,27 +18,36 @@ const selector = {
 	editorForm: 'form'
 };
 
+
 describe('PadEditor', () => {
-	let container,
-		titleInput,
-		audioInput;
+	let container;
 
-	beforeEach(() => {
+	const getTitleInput = () => container.querySelector(selector.titleInput);
+	const getAudioInput = () => container.querySelector(selector.audioInput);
+
+	const mockUseState = (titleMock, audioMock) => {
 		useStateMock
-			.mockImplementationOnce((init) => [init, setTitleInputValueMock])
-			.mockImplementationOnce((init) => [init, setAudioInputValueMock]);
-
-		({container} = render(<PadEditor />));
-		titleInput = container.querySelector(selector.titleInputSelector);
-		audioInput = container.querySelector(selector.audioInputSelector);
-	});
+			.mockImplementationOnce((init) => [titleMock || init, setTitleInputValueMock])
+			.mockImplementationOnce((init) => [audioMock || init, setAudioInputValueMock]);
+	};
 
 	it('it should render the PadEditor component', () => {
-		// Given - When - Then
+		// Given
+		mockUseState(null, null);
+		({container} = render(<PadEditor />));
+
+		// When - Then
 		expect(container).toMatchSnapshot();
 	});
 
 	describe('Title input', () => {
+		let titleInput;
+		beforeEach(() => {
+			mockUseState(null, null);
+			({container} = render(<PadEditor />));
+			titleInput = getTitleInput();
+		});
+		
 		it('Has expected properties', () => {
 			// Given - When - Then
 			expect(titleInput.getAttribute('placeholder')).toEqual('Pad title');
@@ -70,6 +80,13 @@ describe('PadEditor', () => {
 	});
 
 	describe('Title input', () => {
+		let audioInput;
+		beforeEach(() => {
+			mockUseState(null, null);
+			({container} = render(<PadEditor />));
+			audioInput = getAudioInput();
+		});
+
 		it('Has expected properties', () => {
 			// Given - When - Then
 			expect(audioInput.getAttribute('type')).toEqual('file');
