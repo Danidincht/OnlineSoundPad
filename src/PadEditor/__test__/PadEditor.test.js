@@ -145,4 +145,31 @@ describe('PadEditor', () => {
 			});
 		};
 	});
+
+	describe('Save button', () => {
+		it('Calls method passed with form data as argument on click', () => {
+			// Given			
+			const fakeTitle = 'fakeTitle',
+				fakeAudio = {
+					name: 'fileName',
+					type: 'audio/mpeg'
+				},
+				onSaveMock = jest.fn();
+
+			mockUseState(fakeTitle, fakeAudio);
+
+			({container} = render(<PadEditor onsave={onSaveMock}/>));
+			let button = container.querySelector(selector.submitButton);
+
+			// When 
+			fireEvent(button, createEvent.click(button));
+
+			// Then
+			expect(onSaveMock).toBeCalledTimes(1);
+			expect(onSaveMock).toBeCalledWith({
+				title: fakeTitle,
+				audio: fakeAudio
+			});
+		});
+	});
 });

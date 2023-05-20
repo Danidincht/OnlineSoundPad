@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 import './PadEditor.css';
 
-function PadEditor () {
-	const [titleInputValue, setItemInputValue] = useState(''),
+function PadEditor ({onsave}) {
+	const [titleInputValue, setTitleInputValue] = useState(''),
 		[audioInputValue, setAudioInputValue] = useState(null);
 
 	const handleTitleChange = (event)  => {
 		event.preventDefault();
-		setItemInputValue(event.target.value);
+		setTitleInputValue(event.target.value);
 	};
 
 	const handleFileChange = (event) => {
@@ -18,10 +18,19 @@ function PadEditor () {
 		}
 	};
 
+	const handleSubmitForm = (e) => {
+		e.preventDefault();
+		onsave({
+			title: titleInputValue,
+			audio: audioInputValue
+		});
+		return;
+	};
+
 
 	return (
 		<div className='PadEditor'>
-			<form>
+			<form onSubmit={handleSubmitForm}>
 				<input name='title' type='text' placeholder='Pad title' onChange={handleTitleChange} value={titleInputValue}/>
 				<input name='audio' type='file' accept='audio/*' onChange={handleFileChange}/>
 				<button type='submit'>Save</button>
