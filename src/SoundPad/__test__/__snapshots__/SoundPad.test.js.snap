@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders basic Sound Pad layout 1`] = `
+exports[`SoundPad renders basic Sound Pad layout 1`] = `
 <body>
   <div>
     <div>
@@ -13,7 +13,7 @@ exports[`renders basic Sound Pad layout 1`] = `
 </body>
 `;
 
-exports[`renders items from GunJS 1`] = `
+exports[`SoundPad renders items from GunJS 1`] = `
 <body>
   <div>
     <div>
