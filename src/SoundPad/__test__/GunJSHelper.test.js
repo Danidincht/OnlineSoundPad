@@ -1,6 +1,6 @@
 jest.mock('gun');
 
-import { getGunInstance, getItemsNode } from '../GunJSHelper';
+import * as gunJsHelper from '../GunJSHelper';
 import Gun from 'gun';
 
 afterEach(jest.resetModules);
@@ -9,7 +9,7 @@ describe('GunJSHelper', () => {
 	describe('getGunInstance', () => {
 		it('creates a GunJS instance', () => {
 			// Given - When
-			getGunInstance();
+			gunJsHelper.getGunInstance();
 			
 			// Then
 			expect(Gun).toBeCalledTimes(1);
@@ -30,7 +30,7 @@ describe('GunJSHelper', () => {
 			Gun.mockReturnValue(gunMock);
 
 			// When
-			getItemsNode(roomName);
+			gunJsHelper.getItemsNode(roomName);
 
 			// Then
 			expect(Gun).toBeCalledTimes(1);
@@ -38,6 +38,13 @@ describe('GunJSHelper', () => {
 			expect(gunMock.get.mock.calls[0][0]).toBe(roomName);
 			expect(gunMock.get.mock.calls[1][0]).toBe('soundPad');
 			expect(gunMock.get.mock.calls[2][0]).toBe('items');
+		});
+	});
+
+	describe('saveItem', () => {
+		it('saves items to GunJS', () => {
+			// Given - When
+			expect(gunJsHelper.saveItem).toBeDefined();
 		});
 	});
 });

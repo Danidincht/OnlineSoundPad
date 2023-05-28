@@ -3,7 +3,7 @@ jest.mock('../GunJSHelper');
 import React, { useState as useStateMock } from 'react';
 import { render } from '@testing-library/react';
 import SoundPad from '../SoundPad';
-import { getItemsNode } from '../GunJSHelper';
+import { getItemsNode, saveItem } from '../GunJSHelper';
 
 jest.mock('react', () => ({
 	...jest.requireActual('react'),
@@ -11,7 +11,13 @@ jest.mock('react', () => ({
 }));
 const setItemMapMock = jest.fn();
 
-jest.mock('#c/PadEditor');
+const mockPadEditor = jest.fn();
+jest.mock('#c/PadEditor', () => (props) => {
+	mockPadEditor(props);
+	return (
+		<div>PadEditorMockComponent</div>
+	);
+});
 jest.mock('#c/PadItem');
 
 beforeEach(() => {
@@ -81,9 +87,26 @@ describe('SoundPad', () => {
 			gunJSOnCallback(null);
 
 			// Then
-			console.log(gunJSOnCallback);
 			expect(gunJSOnCallback).toBeDefined();
 			expect(setItemMapMock).toBeCalledTimes(0);
+		});
+	});
+
+	describe('PadEditor onSave handler', () => {
+		it('handleSave', () => {
+			// Given
+			const soundPad = <SoundPad />,
+				fakeSaveEventData = {};
+			
+			render(soundPad);
+			const saveFn = mockPadEditor.mock.calls[0][0]['onsave'];
+
+			// When
+			saveFn(fakeSaveEventData);
+
+			// Then
+			expect(saveItem).toBeCalledTimes(1);
+			expect(saveItem).toBeCalledWith(fakeSaveEventData);
 		});
 	});
 });

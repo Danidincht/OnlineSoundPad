@@ -1,6 +1,6 @@
 import './SoundPad.css';
 import { useState, useEffect, useRef } from 'react';
-import { getItemsNode } from './GunJSHelper';
+import { getItemsNode, saveItem } from './GunJSHelper';
 import PadItem from '#c/PadItem';
 import PadEditor from '#c/PadEditor';
 
@@ -22,10 +22,14 @@ function SoundPad() {
 		}
 	}, [itemsNode]);
 
+	const handleOnSave = (event) => {
+		saveItem(event);
+	};
+
 	return (
 		<div>
 			Sound Pad Online
-			<PadEditor />
+			<PadEditor onsave={handleOnSave}/>
 			{
 				[...itemMap.keys()].map((key, index) =>
 					<PadItem
