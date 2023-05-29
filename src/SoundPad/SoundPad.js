@@ -6,12 +6,13 @@ import PadEditor from '#c/PadEditor';
 
 function SoundPad() {
 	const [itemMap, setItemMap] = useState(new Map()),
-		fileReader = new FileReader();
+		fileReader = new FileReader(),
+		roomName = 'AAAG';
 	var itemsNode = useRef(null);
 
 	useEffect(() => {
 		if(!itemsNode.current) {
-			itemsNode.current = getItemsNode('AAAF');
+			itemsNode.current = getItemsNode(roomName);
 
 			itemsNode.current
 				.map()
@@ -25,7 +26,7 @@ function SoundPad() {
 
 	const handleOnSave = ({title, audio}) => {
 		fileReader.onload = () => {
-			saveItem({
+			saveItem(roomName , {
 				title,
 				audio: {
 					file: fileReader.result

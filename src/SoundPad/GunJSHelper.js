@@ -18,6 +18,6 @@ export function getItemsNode(roomName) {
 }
 
 export function saveItem(roomName, itemData) {
-	this.getItemsNode(roomName)
+	getItemsNode(roomName)
 		.set(itemData);
 }

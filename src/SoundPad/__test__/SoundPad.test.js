@@ -32,6 +32,8 @@ beforeEach(() => {
 afterEach(jest.clearAllMocks);
 
 describe('SoundPad', () => {
+	const roomName = 'AAAG';
+
 	it('renders basic Sound Pad layout', () => {
 		// Given - When
 		const page = render(<SoundPad />).baseElement;
@@ -53,6 +55,8 @@ describe('SoundPad', () => {
 
 		// Then
 		expect(page).toMatchSnapshot();
+		expect(getItemsNode).toBeCalledTimes(1);
+		expect(getItemsNode).toBeCalledWith(roomName);
 	});
 
 	describe('itemsNode on function callback', () => {
@@ -153,7 +157,7 @@ describe('SoundPad', () => {
 
 			// Then
 			expect(saveItem).toBeCalledTimes(1);
-			expect(saveItem).toBeCalledWith(fakeSaveEventData);
+			expect(saveItem).toBeCalledWith(roomName, fakeSaveEventData);
 		});
 
 	});
