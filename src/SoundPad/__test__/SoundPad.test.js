@@ -139,9 +139,22 @@ describe('SoundPad', () => {
 			expect(fileReader.readAsDataURL).toBeCalledTimes(1);
 			expect(fileReader.onloadRef).toBeDefined();
 		});
+
+		it('calls gunJsHelper saveItem with processed data', () => {
+			// Given
+			const fileReader = mockFileReader(fakeAudioAsDataURL);
+
+			render(<SoundPad />);
+			const saveFn = mockPadEditor.mock.calls[0][0]['onsave'];
+			saveFn(fakeSaveEventData);
+			
+			// When
+			fileReader.onloadRef(fakeSaveEventData);
+
 			// Then
 			expect(saveItem).toBeCalledTimes(1);
 			expect(saveItem).toBeCalledWith(fakeSaveEventData);
 		});
+
 	});
 });

@@ -25,6 +25,12 @@ function SoundPad() {
 
 	const handleOnSave = ({title, audio}) => {
 		fileReader.onload = () => {
+			saveItem({
+				title,
+				audio: {
+					file: fileReader.result
+				}
+			});
 		};
 
 		fileReader.readAsDataURL(audio);
