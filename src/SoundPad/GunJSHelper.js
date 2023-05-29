@@ -17,4 +17,7 @@ export function getItemsNode(roomName) {
 		.get('items');
 }
 
-export function saveItem() {}
+export function saveItem(roomName, itemData) {
+	this.getItemsNode(roomName)
+		.set(itemData);
+}
