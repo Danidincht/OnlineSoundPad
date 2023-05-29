@@ -5,7 +5,8 @@ import PadItem from '#c/PadItem';
 import PadEditor from '#c/PadEditor';
 
 function SoundPad() {
-	const [itemMap, setItemMap] = useState(new Map());
+	const [itemMap, setItemMap] = useState(new Map()),
+		fileReader = new FileReader();
 	var itemsNode = useRef(null);
 
 	useEffect(() => {
@@ -22,8 +23,11 @@ function SoundPad() {
 		}
 	}, [itemsNode]);
 
-	const handleOnSave = (event) => {
-		saveItem(event);
+	const handleOnSave = ({title, audio}) => {
+		fileReader.onload = () => {
+		};
+
+		fileReader.readAsDataURL(audio);
 	};
 
 	return (

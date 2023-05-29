@@ -93,17 +93,52 @@ describe('SoundPad', () => {
 	});
 
 	describe('PadEditor onSave handler', () => {
-		it('handleSave', () => {
-			// Given
-			const soundPad = <SoundPad />,
-				fakeSaveEventData = {};
+		const fakeAudioAsDataURL = 'audioAsDataUrl',
+			fakeSaveEventData = {
+				title: 'fakeTitle',
+				audio: {
+					file: fakeAudioAsDataURL
+				}
+			};
+
+		const mockFileReader = (result) => {
+			const mockOnLoadFileReader = jest.fn(),
+				fileReader = {
+					readAsDataURL: mockOnLoadFileReader,
+					onloadRef: undefined,
+					result
+				};
+				
+			Object.defineProperty(fileReader, 'onload', {
+				get() {
+					return this._onload;
+				},
+				set(onload) {
+					fileReader.onloadRef = onload;
+					this._onload = onload;
+				}
+			});
 			
-			render(soundPad);
+			jest.spyOn(window, 'FileReader').mockImplementation(() => fileReader);
+			
+			return fileReader;
+		};
+
+		it('reads audio file as data url and sets onload function', () => {
+			// Given
+			const fileReader = mockFileReader();
+
+			render(<SoundPad />);
 			const saveFn = mockPadEditor.mock.calls[0][0]['onsave'];
 
 			// When
 			saveFn(fakeSaveEventData);
 
+			// Then
+
+			expect(fileReader.readAsDataURL).toBeCalledTimes(1);
+			expect(fileReader.onloadRef).toBeDefined();
+		});
 			// Then
 			expect(saveItem).toBeCalledTimes(1);
 			expect(saveItem).toBeCalledWith(fakeSaveEventData);
