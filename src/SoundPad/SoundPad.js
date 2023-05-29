@@ -45,7 +45,7 @@ function SoundPad() {
 				[...itemMap.keys()].map((key, index) =>
 					<PadItem
 						key={index}
-						title={itemMap.get(key).text}
+						title={itemMap.get(key).title}
 						audio={itemMap.get(key).audio}
 					/>
 			)
