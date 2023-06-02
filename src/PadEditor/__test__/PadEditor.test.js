@@ -79,7 +79,7 @@ describe('PadEditor', () => {
 		});
 	});
 
-	describe('Title input', () => {
+	describe('Audio input', () => {
 		let audioInput;
 		beforeEach(() => {
 			mockUseState(null, null);
