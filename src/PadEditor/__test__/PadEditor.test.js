@@ -22,8 +22,10 @@ const selector = {
 describe('PadEditor', () => {
 	let container;
 
-	const getTitleInput = () => container.querySelector(selector.titleInput);
-	const getAudioInput = () => container.querySelector(selector.audioInput);
+	const getTitleInput = () => container.querySelector(selector.titleInput),
+		getAudioInput = () => container.querySelector(selector.audioInput),
+		getSubmitButton = () => container.querySelector(selector.submitButton),
+		getEditorForm = () => container.querySelector(selector.editorForm);
 
 	const mockUseState = (titleMock, audioMock) => {
 		useStateMock
@@ -152,8 +154,8 @@ describe('PadEditor', () => {
 			mockUseState('', '');
 			({container} = render(<PadEditor onsubmit={() => {}}/>));
 
-			const form = container.querySelector(selector.editorForm),
-				submitButton = container.querySelector(selector.submitButton),
+			const form = getEditorForm(),
+				submitButton = getSubmitButton(),
 				submitMock = jest.fn();
 
 			form.addEventListener('submit', () => {
@@ -182,7 +184,7 @@ describe('PadEditor', () => {
 
 			({container} = render(<PadEditor onsubmit={onSubmitMock}/>));
 
-			let editorForm = container.querySelector(selector.editorForm);
+			let editorForm = getEditorForm();
 			let submitEvent = createEvent.submit(editorForm, {});
 			submitEvent.preventDefault = jest.fn();
 
