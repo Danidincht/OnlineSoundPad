@@ -1,30 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders basic Sound Pad layout 1`] = `
+exports[`SoundPad renders basic Sound Pad layout 1`] = `
 <body>
   <div>
     <div>
       Sound Pad Online
-      <padeditormock />
+      <div>
+        PadEditorMockComponent
+      </div>
     </div>
   </div>
 </body>
 `;
 
-exports[`renders items from GunJS 1`] = `
+exports[`SoundPad renders items from GunJS 1`] = `
 <body>
   <div>
     <div>
       Sound Pad Online
-      <padeditormock />
-      <paditemmock
-        audio="[object Object]"
-        title="text1"
-      />
-      <paditemmock
-        audio="[object Object]"
-        title="text2"
-      />
+      <div>
+        PadEditorMockComponent
+      </div>
+      <div>
+        PadItemMockComponent
+      </div>
+      <div>
+        PadItemMockComponent
+      </div>
     </div>
   </div>
 </body>

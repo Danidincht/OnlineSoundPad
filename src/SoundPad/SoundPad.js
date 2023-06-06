@@ -1,16 +1,18 @@
 import './SoundPad.css';
 import { useState, useEffect, useRef } from 'react';
-import { getItemsNode } from './GunJSHelper';
+import { getItemsNode, saveItem } from './GunJSHelper';
 import PadItem from '#c/PadItem';
 import PadEditor from '#c/PadEditor';
 
 function SoundPad() {
-	const [itemMap, setItemMap] = useState(new Map());
+	const [itemMap, setItemMap] = useState(new Map()),
+		fileReader = new FileReader(),
+		roomName = 'AAAG';
 	var itemsNode = useRef(null);
 
 	useEffect(() => {
 		if(!itemsNode.current) {
-			itemsNode.current = getItemsNode('AAAF');
+			itemsNode.current = getItemsNode(roomName);
 
 			itemsNode.current
 				.map()
@@ -22,15 +24,28 @@ function SoundPad() {
 		}
 	}, [itemsNode]);
 
+	const handleOnSubmit = ({title, audio}) => {
+		fileReader.onload = () => {
+			saveItem(roomName , {
+				title,
+				audio: {
+					file: fileReader.result
+				}
+			});
+		};
+
+		fileReader.readAsDataURL(audio);
+	};
+
 	return (
 		<div>
 			Sound Pad Online
-			<PadEditor />
+			<PadEditor onsubmit={handleOnSubmit}/>
 			{
 				[...itemMap.keys()].map((key, index) =>
 					<PadItem
 						key={index}
-						title={itemMap.get(key).text}
+						title={itemMap.get(key).title}
 						audio={itemMap.get(key).audio}
 					/>
 			)

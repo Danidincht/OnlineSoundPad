@@ -16,3 +16,8 @@ export function getItemsNode(roomName) {
 		.get('soundPad')
 		.get('items');
 }
+
+export function saveItem(roomName, itemData) {
+	getItemsNode(roomName)
+		.set(itemData);
+}
