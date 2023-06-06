@@ -139,7 +139,6 @@ describe('SoundPad', () => {
 			saveFn(fakeSaveEventData);
 
 			// Then
-
 			expect(fileReader.readAsDataURL).toBeCalledTimes(1);
 			expect(fileReader.onloadRef).toBeDefined();
 		});
