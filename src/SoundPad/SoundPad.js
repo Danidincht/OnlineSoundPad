@@ -24,7 +24,7 @@ function SoundPad() {
 		}
 	}, [itemsNode]);
 
-	const handleOnSave = ({title, audio}) => {
+	const handleOnSubmit = ({title, audio}) => {
 		fileReader.onload = () => {
 			saveItem(roomName , {
 				title,
@@ -40,7 +40,7 @@ function SoundPad() {
 	return (
 		<div>
 			Sound Pad Online
-			<PadEditor onsave={handleOnSave}/>
+			<PadEditor onsubmit={handleOnSubmit}/>
 			{
 				[...itemMap.keys()].map((key, index) =>
 					<PadItem

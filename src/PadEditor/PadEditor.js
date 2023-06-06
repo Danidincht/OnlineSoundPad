@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './PadEditor.css';
 
-function PadEditor ({onsave}) {
+function PadEditor ({onsubmit}) {
 	const [titleInputValue, setTitleInputValue] = useState(''),
 		[audioInputValue, setAudioInputValue] = useState(null);
 
@@ -20,7 +20,7 @@ function PadEditor ({onsave}) {
 
 	const handleSubmitForm = (e) => {
 		e.preventDefault();
-		onsave({
+		onsubmit({
 			title: titleInputValue,
 			audio: audioInputValue
 		});

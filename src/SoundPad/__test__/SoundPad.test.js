@@ -96,7 +96,7 @@ describe('SoundPad', () => {
 		});
 	});
 
-	describe('PadEditor onSave handler', () => {
+	describe('PadEditor onSubmit handler', () => {
 		const fakeAudioAsDataURL = 'audioAsDataUrl',
 			fakeSaveEventData = {
 				title: 'fakeTitle',
@@ -133,7 +133,7 @@ describe('SoundPad', () => {
 			const fileReader = mockFileReader();
 
 			render(<SoundPad />);
-			const saveFn = mockPadEditor.mock.calls[0][0]['onsave'];
+			const saveFn = mockPadEditor.mock.calls[0][0]['onsubmit'];
 
 			// When
 			saveFn(fakeSaveEventData);
@@ -149,7 +149,7 @@ describe('SoundPad', () => {
 			const fileReader = mockFileReader(fakeAudioAsDataURL);
 
 			render(<SoundPad />);
-			const saveFn = mockPadEditor.mock.calls[0][0]['onsave'];
+			const saveFn = mockPadEditor.mock.calls[0][0]['onsubmit'];
 			saveFn(fakeSaveEventData);
 			
 			// When

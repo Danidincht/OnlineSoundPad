@@ -150,7 +150,7 @@ describe('PadEditor', () => {
 		it('fires onSubmit event', () => {
 			// Given
 			mockUseState('', '');
-			({container} = render(<PadEditor onsave={() => {}}/>));
+			({container} = render(<PadEditor onsubmit={() => {}}/>));
 
 			const form = container.querySelector(selector.editorForm),
 				submitButton = container.querySelector(selector.submitButton),
@@ -176,11 +176,11 @@ describe('PadEditor', () => {
 					name: 'fileName',
 					type: 'audio/mpeg'
 				},
-				onSaveMock = jest.fn();
+				onSubmitMock = jest.fn();
 
 			mockUseState(fakeTitle, fakeAudio);
 
-			({container} = render(<PadEditor onsave={onSaveMock}/>));
+			({container} = render(<PadEditor onsubmit={onSubmitMock}/>));
 
 			let editorForm = container.querySelector(selector.editorForm);
 			let submitEvent = createEvent.submit(editorForm, {});
@@ -192,8 +192,8 @@ describe('PadEditor', () => {
 			// Then
 			expect(submitEvent.preventDefault).toBeCalledTimes(1);
 
-			expect(onSaveMock).toBeCalledTimes(1);
-			expect(onSaveMock).toBeCalledWith({
+			expect(onSubmitMock).toBeCalledTimes(1);
+			expect(onSubmitMock).toBeCalledWith({
 				title: fakeTitle,
 				audio: fakeAudio
 			});
