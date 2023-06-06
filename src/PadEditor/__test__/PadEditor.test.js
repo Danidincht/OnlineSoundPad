@@ -147,6 +147,28 @@ describe('PadEditor', () => {
 	});
 
 	describe('Save button', () => {
+		it('fires onSubmit event', () => {
+			// Given
+			mockUseState('', '');
+			({container} = render(<PadEditor onsave={() => {}}/>));
+
+			const form = container.querySelector(selector.editorForm),
+				submitButton = container.querySelector(selector.submitButton),
+				submitMock = jest.fn();
+
+			form.addEventListener('submit', () => {
+				submitMock();
+			});
+
+			// When
+			fireEvent.click(submitButton);
+
+			// Then
+			expect(submitMock).toBeCalledTimes(1);
+		});
+	});
+
+	describe('onSubmit event', () => {
 		it('Calls method passed with form data as argument on click', () => {
 			// Given			
 			const fakeTitle = 'fakeTitle',
@@ -159,12 +181,17 @@ describe('PadEditor', () => {
 			mockUseState(fakeTitle, fakeAudio);
 
 			({container} = render(<PadEditor onsave={onSaveMock}/>));
-			let button = container.querySelector(selector.submitButton);
+
+			let editorForm = container.querySelector(selector.editorForm);
+			let submitEvent = createEvent.submit(editorForm, {});
+			submitEvent.preventDefault = jest.fn();
 
 			// When 
-			fireEvent(button, createEvent.click(button));
+			fireEvent(editorForm, submitEvent);
 
 			// Then
+			expect(submitEvent.preventDefault).toBeCalledTimes(1);
+
 			expect(onSaveMock).toBeCalledTimes(1);
 			expect(onSaveMock).toBeCalledWith({
 				title: fakeTitle,
