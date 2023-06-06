@@ -32,9 +32,7 @@ describe('GunJSHelper', () => {
 
 	describe('getItemsNode', () => {
 		it('gets items node of current room', () => {
-			// Given
-
-			// When
+			// Given - When
 			gunJsHelper.getItemsNode(fakeRoomName);
 
 			// Then
