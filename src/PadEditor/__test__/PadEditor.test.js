@@ -156,17 +156,17 @@ describe('PadEditor', () => {
 
 			const form = getEditorForm(),
 				submitButton = getSubmitButton(),
-				submitMock = jest.fn();
+				submitEventMock = jest.fn();
 
 			form.addEventListener('submit', () => {
-				submitMock();
+				submitEventMock();
 			});
 
 			// When
 			fireEvent.click(submitButton);
 
 			// Then
-			expect(submitMock).toBeCalledTimes(1);
+			expect(submitEventMock).toBeCalledTimes(1);
 		});
 	});
 
