@@ -3,7 +3,7 @@ function PadItem(props) {
 	<div>
 		{props.title}
 		<audio
-			src={props.audio}
+			src={props.audio.file}
 			controls={true}
 		></audio>
 	</div>
