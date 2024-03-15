@@ -4,6 +4,7 @@ import React, { useState as useStateMock } from 'react';
 import { render } from '@testing-library/react';
 import SoundPad from '../SoundPad';
 import { getItemsNode, saveItem } from '../GunJSHelper';
+import {} from 'gun/lib/open';
 
 jest.mock('react', () => ({
 	...jest.requireActual('react'),
@@ -23,9 +24,7 @@ jest.mock('#c/PadItem');
 beforeEach(() => {
 	useStateMock.mockImplementation((init) => [init, setItemMapMock]);
 	getItemsNode.mockReturnValue({
-		map: () => ({
-			on: jest.fn()
-		})
+		open: jest.fn()
 	});
 });
 
@@ -44,10 +43,10 @@ describe('SoundPad', () => {
 
 	it('renders items from GunJS', () => {
 		// Given
-		var items = new Map([
-			[1, {text: 'text1', audio: {}}],
-			[2, {text: 'text2', audio: {}}]
-		]);
+		var items = {
+			1: {text: 'text1', audio: {}},
+			2: {text: 'text2', audio: {}}
+		};
 		useStateMock.mockImplementation(() => [items, setItemMapMock]);
 
 		// When
@@ -64,12 +63,10 @@ describe('SoundPad', () => {
 		beforeEach(() => {
 			gunJSOnCallback = undefined;
 			getItemsNode.mockReturnValue({
-				map: () => ({
-					on: (cb) => {
+				open: (cb) => {
 						gunJSOnCallback = cb;
 					}
-				})
-			});
+				});
 		});
 
 		it('Adds items to itemMap to render if data is not null', () => {

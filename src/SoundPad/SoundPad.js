@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { getItemsNode, saveItem } from './GunJSHelper';
 import PadItem from '#c/PadItem';
 import PadEditor from '#c/PadEditor';
+import { } from 'gun/lib/open';
 
 function SoundPad() {
 	const [itemMap, setItemMap] = useState(new Map()),
@@ -15,10 +16,9 @@ function SoundPad() {
 			itemsNode.current = getItemsNode(roomName);
 
 			itemsNode.current
-				.map()
-				.on((data, key) => {
+				.open((data) => {
 					if(data !== null) {
-						setItemMap(prevState => new Map(prevState).set(key, data));
+						setItemMap(data);
 					}
 				});
 		}
@@ -42,11 +42,11 @@ function SoundPad() {
 			Sound Pad Online
 			<PadEditor onsubmit={handleOnSubmit}/>
 			{
-				[...itemMap.keys()].map((key, index) =>
+				[...Object.keys(itemMap)].map((key, index) =>
 					<PadItem
 						key={index}
-						title={itemMap.get(key).title}
-						audio={itemMap.get(key).audio}
+						title={itemMap[key].title}
+						audio={itemMap[key].audio}
 					/>
 			)
 			}
